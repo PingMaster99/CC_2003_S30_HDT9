@@ -6,7 +6,7 @@ import java.util.LinkedHashMap;
  *
  * @author Pablo Ruiz (PingMaster99)
  * @version 1.0
- * @since 2020-03-18
+ * @since 2020-04-20
  **/
 public class Association<K, V> {
 
