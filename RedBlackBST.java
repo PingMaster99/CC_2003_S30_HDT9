@@ -1,5 +1,15 @@
 import java.util.NoSuchElementException;
+/**
+ * https://algs4.cs.princeton.edu/33balanced/RedBlackBST.java.html
+ * @author Robert Sedgewick
+ * @author Kevin Wayne
+ */
 
+/**
+ *
+ * @param <Key>
+ * @param <Value>
+ */
 public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
     private static final boolean RED   = true;
@@ -249,8 +259,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
                 Node x = min(h.right);
                 h.key = x.key;
                 h.val = x.val;
-                // h.val = get(h.right, min(h.right).key);
-                // h.key = min(h.right).key;
                 h.right = deleteMin(h.right);
             }
             else h.right = delete(h.right, key);

@@ -12,17 +12,15 @@ public class Main {
         Association<String, String> dictionaryMap = new Association<String, String>(selectedMap.getMap(mapType));
 
         // Adds the needed values in the dictionary and binary tree according to the text document
-        dictionaryMap.addEntry("hey","Hello");
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Spanish.txt"));
-            String line;
+            String line = "";
 
             // Generates the map (dictionary)
             while((line = reader.readLine()) != null) {
-                dictionaryMap.addEntry("hello", "hola");
+                System.out.println(line);
 
             }
-            System.out.println(dictionaryMap.getSpanishWord("hello"));
         } catch (Exception E) {
             System.err.println("There was an error while generating the dictionary");
         }
