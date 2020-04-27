@@ -31,7 +31,19 @@ public class Main {
         // Reads the document to be translated
         try {
             BufferedReader reader = new BufferedReader(new FileReader("text.txt"));
-            String line;
+            String line = "";
+            while((line = reader.readLine()) != null) {
+                String lineInArray[] = line.split("");
+                String translatedText = "";
+                for (String word : lineInArray) {
+                    System.out.println ("hola");
+                    translatedText += dictionaryMap.getSpanishWord(word);
+
+                }
+
+            }
+
+
 
 
         } catch (Exception E) {
