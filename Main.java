@@ -19,28 +19,12 @@ public class Main {
 
             // Generates the map (dictionary)
             while((line = reader.readLine()) != null) {
-
                 String definition = "";
-                String[] words = line.split(" ");
+                String[] words = line.split("\\s+|,|\\( |\\[|/");
 
-                for(int i = 1; i < words.length; i++) {
-                    String currentWord = words[i];
-
-                    for(int j = 0; j< words[i].length(); j++) {
-                        currentWord = "";
-                        char currentCharacter = words[i].charAt(j);
-                        if(currentCharacter == '[' || currentCharacter == ',') {
-                            break;
-                        }
-                        currentWord += currentCharacter;
-                    }
-                    definition += currentWord;
+                if(words[0].charAt(0) != '#' && words.length > 1) {
+                    dictionaryMap.addEntry(words[0], words[1] + " ");
                 }
-                System.out.println(definition);
-
-                dictionaryMap.addEntry(words[0], definition);
-                //System.out.println(line);
-
             }
         } catch (Exception E) {
             System.err.println("There was an error while generating the dictionary");
@@ -53,8 +37,14 @@ public class Main {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("text.txt"));
             String line;
-
-
+            while((line = reader.readLine()) != null) {
+                String lineInArray[] = line.split("\\s+|,|\\.|!|\\[|/");
+                String translatedText = "";
+                for (String word : lineInArray) {
+                    translatedText += dictionaryMap.getSpanishWord(word.toLowerCase());
+                }
+                System.out.println(translatedText);
+            }
         } catch (Exception E) {
             System.err.println("There was an error while converting the file to a map");
         }
