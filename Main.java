@@ -5,7 +5,10 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese la implementacion que desea utilizar: \n 1 -> Splay Tree \n 2 -> B-Tree");
+        System.out.println("" + "\n***************************************************** \n" +
+                "Ingrese la implementacion que desea utilizar: \n 1 -> Red BLack Tree \n 2 -> B-Tree (2-3)" +
+                "\n*****************************************************");
+        System.out.print(">> ");
         String mapType = input.nextLine();
 
         MapFactory<String, String> selectedMap = new MapFactory<>();
@@ -48,6 +51,5 @@ public class Main {
         } catch (Exception E) {
             System.err.println("There was an error while converting the file to a map");
         }
-
     }
 }
