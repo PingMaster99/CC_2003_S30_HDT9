@@ -48,7 +48,7 @@ public class Association<K, V> {
         if(containsWord(englishWord)) {
             return dictionaryMap.get(englishWord);
         } else {
-            return englishWord.toString();
+            return "*" + englishWord.toString() + "*";
         }
     }
 }
