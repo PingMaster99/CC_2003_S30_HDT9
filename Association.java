@@ -1,4 +1,5 @@
-import java.util.LinkedHashMap;
+import java.util.Map;
+
 /**
  * <h1>Association</h1>
  * Methods used to define the dictionary
@@ -9,9 +10,14 @@ import java.util.LinkedHashMap;
  * @since 2020-04-20
  **/
 public class Association<K, V> {
+    private String mapType = "1";
 
-    // Uses a linked hash map to save the word associations
-    private LinkedHashMap<K, V> dictionaryMap = new LinkedHashMap<>();
+
+    public Association(Map<K, V> dictionaryMap) {
+        this.dictionaryMap = dictionaryMap;
+    }
+
+    Map<K, V> dictionaryMap;
 
     /**
      * Adds a dictionary entry
