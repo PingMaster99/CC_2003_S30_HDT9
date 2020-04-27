@@ -13,7 +13,7 @@ public class Main {
 
         // Adds the needed values in the dictionary and binary tree according to the text document
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("dictionary.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("Spanish.txt"));
             String line;
 
             // Generates the map (dictionary)
