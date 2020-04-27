@@ -11,8 +11,6 @@ public class Main {
         MapFactory<String, String> selectedMap = new MapFactory<>();
         Association<String, String> dictionaryMap = new Association<String, String>(selectedMap.getMap(mapType));
 
-        dictionaryMap.addEntry("hey","hoewfwefwefwefla");
-        System.out.println(dictionaryMap.getSpanishWord("1"));
 
         // Adds the needed values in the dictionary and binary tree according to the text document
         try {
@@ -24,20 +22,21 @@ public class Main {
 
                 String definition = "";
                 String[] words = line.split(" ");
+
                 for(int i = 1; i < words.length; i++) {
                     String currentWord = words[i];
 
                     for(int j = 0; j< words[i].length(); j++) {
+                        currentWord = "";
                         char currentCharacter = words[i].charAt(j);
-
-                        if(currentCharacter == '[') {
+                        if(currentCharacter == '[' || currentCharacter == ',') {
                             break;
                         }
-
+                        currentWord += currentCharacter;
                     }
-                    String[] lastWord = words[i].split("\\[");
-
+                    definition += currentWord;
                 }
+                System.out.println(definition);
 
                 dictionaryMap.addEntry(words[0], definition);
                 //System.out.println(line);
@@ -53,19 +52,7 @@ public class Main {
         // Reads the document to be translated
         try {
             BufferedReader reader = new BufferedReader(new FileReader("text.txt"));
-            String line = "";
-            while((line = reader.readLine()) != null) {
-                String lineInArray[] = line.split("");
-                String translatedText = "";
-                for (String word : lineInArray) {
-                    System.out.println ("hola");
-                    translatedText += dictionaryMap.getSpanishWord(word);
-
-                }
-
-            }
-
-
+            String line;
 
 
         } catch (Exception E) {
