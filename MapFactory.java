@@ -1,19 +1,17 @@
-import java.util.LinkedHashMap;
-import java.util.Map;
+public class MapFactory<K extends Comparable<K>, V> {
+    public MapInterface<K, V> getMap(String entry) {
 
-public class MapFactory<K, V> {
-    public Map<K, V> getMap(String entry) {
         entry = entry.toLowerCase();
-        Map<K,V>myMap =null;
+
         if(entry.equals("1")) {
-            System.out.println("Usando Splay Tree");
-            myMap = new SplayTreeMap<K,V>();
+            System.out.println("Usando Red Black Tree");
+            return new RedBlackTreeMap<>();
         } else if (entry.equals("2")) {
             System.out.println("Usando BTree (2-3)");
-            return new BTreeMap<String, String>();
+            return new BTreeMap<>();
         } else {
             System.out.println("Usando BTree (2-3)");
-            return new LinkedHashMap<>();
+            return new BTreeMap<>();
         }
     }
 }

@@ -1,5 +1,3 @@
-import java.util.Map;
-
 /**
  * <h1>Association</h1>
  * Methods used to define the dictionary
@@ -13,11 +11,11 @@ public class Association<K, V> {
     private String mapType = "1";
 
 
-    public Association(Map<K, V> dictionaryMap) {
+    public Association(MapInterface<K, V> dictionaryMap) {
         this.dictionaryMap = dictionaryMap;
     }
 
-    Map<K, V> dictionaryMap;
+    MapInterface<K, V> dictionaryMap;
 
     /**
      * Adds a dictionary entry
@@ -46,7 +44,7 @@ public class Association<K, V> {
      * @param englishWord word in english
      * @return the word in Spanish
      */
-    public V getSpanishWord(K englishWord) {
+    public String getSpanishWord(K englishWord) {
         return dictionaryMap.get(englishWord);
     }
 }
