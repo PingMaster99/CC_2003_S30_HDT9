@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /** Class Node **/
-class SplayNode <S>
+class SplayNode
 {
     SplayNode left, right, parent;
 
-    S elementInEnglish;
-    S elementInSpanish;
+    String elementInEnglish;
+    String elementInSpanish;
 
 
     /** Constructor **/
@@ -25,7 +25,7 @@ class SplayNode <S>
         this.elementInSpanish=null;
     }
     /** Constructor **/
-    public SplayNode(S elementInEnglish, S elementInSpanish)
+    public SplayNode(String elementInEnglish, String elementInSpanish)
     {
         this.left = null;
         this.right = null;
@@ -40,7 +40,7 @@ class SplayNode <S>
 
 
 /** Class SplayTree **/
-class SplayTree <S>
+class SplayTree
 {
     private SplayNode root;
     private int count = 0;
@@ -54,14 +54,14 @@ class SplayTree <S>
 
 
     /** function to insert element */
-    public void insert(SplayNode<S> element)
+    public void insert(SplayNode element)
     {
         SplayNode z = root;
         SplayNode p = null;
         while (z != null)
         {
             p = z;
-            if (element.elementInEnglish == p.elementInEnglish)
+            if (element.elementInEnglish.compareTo(p.elementInEnglish) > 0)
                 z = z.right;
             else
                 z = z.left;
