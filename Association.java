@@ -28,7 +28,7 @@ public class Association<K, V> {
      * @return boolean if it contains the word
      */
     public boolean containsWord(K englishWord) {
-        if(dictionaryMap.containsKey(englishWord)){
+        if(dictionaryMap.get(englishWord) != null){
             return true;
         } else {
             return false;

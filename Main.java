@@ -7,5 +7,8 @@ public class Main {
         input.nextLine();
 
         System.out.println("Hello world!");
+        BTree<String, String> binaryTree = new BTree<String,String>();
+        binaryTree.put("WAD","AEFASEFA");
+
     }
 }
