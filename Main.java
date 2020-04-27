@@ -9,7 +9,7 @@ public class Main {
         String mapType = input.nextLine();
 
         MapFactory<String, String> selectedMap = new MapFactory<>();
-        Association<String, String> dictionaryMap = new Association<>(selectedMap.getMap("mapType"));
+        Association<String, String> dictionaryMap = new Association<>(selectedMap.getMap(mapType));
 
         // Adds the needed values in the dictionary and binary tree according to the text document
         try {
@@ -18,15 +18,12 @@ public class Main {
 
             // Generates the map (dictionary)
             while((line = reader.readLine()) != null) {
-                // Formats the line so that it can be saved in the dictionary
-                line = line.replace("(", "");
-                line = line.replace(")", "");
-                String[] splitLine = line.split(",");   // Splits it in two words
-                splitLine[1] = splitLine[1].replace(" ", "");   // Removes additional space
-                dictionaryMap.addEntry(splitLine[0], splitLine[1]); // Adds them to the dictionary
+                dictionaryMap.addEntry("hello", "hola");
+
             }
+            System.out.println(dictionaryMap.getSpanishWord("hello"));
         } catch (Exception E) {
-            System.err.println("There was an error while converting the file to a map");
+            System.err.println("There was an error while generating the dictionary");
         }
 
 
