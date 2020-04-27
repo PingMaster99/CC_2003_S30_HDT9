@@ -11,6 +11,9 @@ public class Main {
         MapFactory<String, String> selectedMap = new MapFactory<>();
         Association<String, String> dictionaryMap = new Association<String, String>(selectedMap.getMap(mapType));
 
+        dictionaryMap.addEntry("hey","hoewfwefwefwefla");
+        System.out.println(dictionaryMap.getSpanishWord("1"));
+
         // Adds the needed values in the dictionary and binary tree according to the text document
         try {
             BufferedReader reader = new BufferedReader(new FileReader("Spanish.txt"));
@@ -18,7 +21,26 @@ public class Main {
 
             // Generates the map (dictionary)
             while((line = reader.readLine()) != null) {
-                System.out.println(line);
+
+                String definition = "";
+                String[] words = line.split(" ");
+                for(int i = 1; i < words.length; i++) {
+                    String currentWord = words[i];
+
+                    for(int j = 0; j< words[i].length(); j++) {
+                        char currentCharacter = words[i].charAt(j);
+
+                        if(currentCharacter == '[') {
+                            break;
+                        }
+
+                    }
+                    String[] lastWord = words[i].split("\\[");
+
+                }
+
+                dictionaryMap.addEntry(words[0], definition);
+                //System.out.println(line);
 
             }
         } catch (Exception E) {

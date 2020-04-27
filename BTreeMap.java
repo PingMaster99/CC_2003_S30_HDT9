@@ -8,6 +8,11 @@ public class BTreeMap<K extends Comparable<K>,V> implements MapInterface<K, V> {
 
     public String get(K key) {
         String english = key.toString();
-        return btree.get(key).toString();
+        if(btree.get(key) != null) {
+            return btree.get(key).toString();
+        } else {
+            return null;
+        }
+
     }
 }

@@ -8,6 +8,11 @@ public class RedBlackTreeMap<K extends Comparable<K>,V> implements MapInterface<
 
     public String get(K key) {
         String english = key.toString();
-        return rbt.get(key).toString();
+        if(rbt.get(key) != null) {
+            return rbt.get(key).toString();
+        } else {
+            return null;
+        }
+
     }
 }
