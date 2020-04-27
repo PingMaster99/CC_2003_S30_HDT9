@@ -3,7 +3,7 @@
  **/
 
 import java.util.ArrayList;
-import java.util.Scanner;
+xscvcimport java.util.Scanner;
 
 /** Class Node **/
 class SplayNode
