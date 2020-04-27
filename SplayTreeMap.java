@@ -3,13 +3,12 @@ public class SplayTreeMap<K, V> implements Map<K, V> {
 
     @Override
     public void put(K key, V value) {
-        SplayNode<K> splayNode = new SplayNode<key, value>();
-        splayTree.insert();
+        SplayNode<String> splayNode = new SplayNode<String>(key.toString(), value.toString());
+        splayTree.insert(splayNode);
     }
 
     @Override
-    public V get(K key) {
-
-        return null;
+    public String get(K key) {
+        return splayTree.search(key.toString());
     }
 }

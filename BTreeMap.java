@@ -1,16 +1,14 @@
-public class BTreeMap<K extends Comparable<K>,V> implements Map<K, V>{
+public class BTreeMap<K,V> implements Map<K, V>{
 
-    public BTreeMap(BTree<K, V> btree) {
-        this.btree = btree;
-    }
-
-    BTree<K, V> btree;
+    BTree<String, V> btree = new BTree<>();
 
     public void put(K key, V value) {
-        btree.put(key,value);
+        String english = key.toString();
+        btree.put(english, value);
     }
 
-    public V get(K key) {
-        return btree.get(key);
+    public String get(K key) {
+        String english = key.toString();
+        return btree.get(english).toString();
     }
 }
