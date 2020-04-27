@@ -45,6 +45,10 @@ public class Association<K, V> {
      * @return the word in Spanish
      */
     public String getSpanishWord(K englishWord) {
-        return dictionaryMap.get(englishWord);
+        if(containsWord(englishWord)) {
+            return dictionaryMap.get(englishWord);
+        } else {
+            return englishWord.toString();
+        }
     }
 }

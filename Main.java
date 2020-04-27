@@ -18,6 +18,25 @@ public class Main {
 
             // Generates the map (dictionary)
             while((line = reader.readLine()) != null) {
+
+                String definition = "";
+                String[] words = line.split(" ");
+                for(int i = 1; i < words.length; i++) {
+                    String currentWord = words[i];
+
+                    for(int j = 0; j< words[i].length(); i++) {
+                        char currentCharacter = words[i].charAt(j);
+
+                        if(currentCharacter == '[') {
+
+                        }
+
+                    }
+                    String[] lastWord = words[i].split("\\[");
+
+                }
+
+                dictionaryMap.addEntry(words[0], definition);
                 System.out.println(line);
 
             }
