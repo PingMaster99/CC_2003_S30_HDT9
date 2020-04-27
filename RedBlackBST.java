@@ -1,15 +1,19 @@
 import java.util.NoSuchElementException;
 /**
+ * <h1>RedBlackBST</h1>
+ * Red Black Tree implementation
+ * <p>
+ *
  * https://algs4.cs.princeton.edu/33balanced/RedBlackBST.java.html
  * @author Robert Sedgewick
  * @author Kevin Wayne
- */
-
-/**
  *
- * @param <Key>
- * @param <Value>
- */
+ * Edited by:
+ *
+ * @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
+ * @version 1.0
+ * @since 2020-04-27
+ **/
 public class RedBlackBST<Key extends Comparable<Key>, Value> {
 
     private static final boolean RED   = true;
@@ -158,21 +162,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
      *  Red-black tree deletion.
      ***************************************************************************/
 
-    /**
-     * Removes the smallest key and associated value from the symbol table.
-     * @throws NoSuchElementException if the symbol table is empty
-     */
-    public void deleteMin() {
-        if (isEmpty()) throw new NoSuchElementException("BST underflow");
-
-        // if both children of root are black, set root to red
-        if (!isRed(root.left) && !isRed(root.right))
-            root.color = RED;
-
-        root = deleteMin(root);
-        if (!isEmpty()) root.color = BLACK;
-        // assert check();
-    }
 
     // delete the key-value pair with the minimum key rooted at h
     private Node deleteMin(Node h) {
@@ -186,38 +175,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return balance(h);
     }
 
-
-    /**
-     * Removes the largest key and associated value from the symbol table.
-     * @throws NoSuchElementException if the symbol table is empty
-     */
-    public void deleteMax() {
-        if (isEmpty()) throw new NoSuchElementException("BST underflow");
-
-        // if both children of root are black, set root to red
-        if (!isRed(root.left) && !isRed(root.right))
-            root.color = RED;
-
-        root = deleteMax(root);
-        if (!isEmpty()) root.color = BLACK;
-        // assert check();
-    }
-
-    // delete the key-value pair with the maximum key rooted at h
-    private Node deleteMax(Node h) {
-        if (isRed(h.left))
-            h = rotateRight(h);
-
-        if (h.right == null)
-            return null;
-
-        if (!isRed(h.right) && !isRed(h.right.left))
-            h = moveRedRight(h);
-
-        h.right = deleteMax(h.right);
-
-        return balance(h);
-    }
 
     /**
      * Removes the specified key and its associated value from this symbol table
@@ -347,23 +304,6 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
         return h;
     }
 
-
-    /***************************************************************************
-     *  Utility functions.
-     ***************************************************************************/
-
-    /**
-     * Returns the height of the BST (for debugging).
-     * @return the height of the BST (a 1-node tree has height 0)
-     */
-    public int height() {
-        return height(root);
-    }
-    private int height(Node x) {
-        if (x == null) return -1;
-        return 1 + Math.max(height(x.left), height(x.right));
-    }
-
     /***************************************************************************
      *  Ordered symbol table methods.
      ***************************************************************************/
@@ -373,135 +313,10 @@ public class RedBlackBST<Key extends Comparable<Key>, Value> {
      * @return the smallest key in the symbol table
      * @throws NoSuchElementException if the symbol table is empty
      */
-    public Key min() {
-        if (isEmpty()) throw new NoSuchElementException("calls min() with empty symbol table");
-        return min(root).key;
-    }
-
     // the smallest key in subtree rooted at x; null if no such key
     private Node min(Node x) {
         // assert x != null;
         if (x.left == null) return x;
         else                return min(x.left);
     }
-
-    /**
-     * Returns the largest key in the symbol table.
-     * @return the largest key in the symbol table
-     * @throws NoSuchElementException if the symbol table is empty
-     */
-    public Key max() {
-        if (isEmpty()) throw new NoSuchElementException("calls max() with empty symbol table");
-        return max(root).key;
-    }
-
-    // the largest key in the subtree rooted at x; null if no such key
-    private Node max(Node x) {
-        // assert x != null;
-        if (x.right == null) return x;
-        else                 return max(x.right);
-    }
-
-
-    /**
-     * Returns the largest key in the symbol table less than or equal to {@code key}.
-     * @param key the key
-     * @return the largest key in the symbol table less than or equal to {@code key}
-     * @throws NoSuchElementException if there is no such key
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public Key floor(Key key) {
-        if (key == null) throw new IllegalArgumentException("argument to floor() is null");
-        if (isEmpty()) throw new NoSuchElementException("calls floor() with empty symbol table");
-        Node x = floor(root, key);
-        if (x == null) throw new NoSuchElementException("argument to floor() is too small");
-        else           return x.key;
-    }
-
-    // the largest key in the subtree rooted at x less than or equal to the given key
-    private Node floor(Node x, Key key) {
-        if (x == null) return null;
-        int cmp = key.compareTo(x.key);
-        if (cmp == 0) return x;
-        if (cmp < 0)  return floor(x.left, key);
-        Node t = floor(x.right, key);
-        if (t != null) return t;
-        else           return x;
-    }
-
-    /**
-     * Returns the smallest key in the symbol table greater than or equal to {@code key}.
-     * @param key the key
-     * @return the smallest key in the symbol table greater than or equal to {@code key}
-     * @throws NoSuchElementException if there is no such key
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public Key ceiling(Key key) {
-        if (key == null) throw new IllegalArgumentException("argument to ceiling() is null");
-        if (isEmpty()) throw new NoSuchElementException("calls ceiling() with empty symbol table");
-        Node x = ceiling(root, key);
-        if (x == null) throw new NoSuchElementException("argument to ceiling() is too small");
-        else           return x.key;
-    }
-
-    // the smallest key in the subtree rooted at x greater than or equal to the given key
-    private Node ceiling(Node x, Key key) {
-        if (x == null) return null;
-        int cmp = key.compareTo(x.key);
-        if (cmp == 0) return x;
-        if (cmp > 0)  return ceiling(x.right, key);
-        Node t = ceiling(x.left, key);
-        if (t != null) return t;
-        else           return x;
-    }
-
-    /**
-     * Return the key in the symbol table of a given {@code rank}.
-     * This key has the property that there are {@code rank} keys in
-     * the symbol table that are smaller. In other words, this key is the
-     * ({@code rank}+1)st smallest key in the symbol table.
-     *
-     * @param  rank the order statistic
-     * @return the key in the symbol table of given {@code rank}
-     * @throws IllegalArgumentException unless {@code rank} is between 0 and
-     *        <em>n</em>–1
-     */
-    public Key select(int rank) {
-        if (rank < 0 || rank >= size()) {
-            throw new IllegalArgumentException("argument to select() is invalid: " + rank);
-        }
-        return select(root, rank);
-    }
-
-    // Return key in BST rooted at x of given rank.
-    // Precondition: rank is in legal range.
-    private Key select(Node x, int rank) {
-        if (x == null) return null;
-        int leftSize = size(x.left);
-        if      (leftSize > rank) return select(x.left,  rank);
-        else if (leftSize < rank) return select(x.right, rank - leftSize - 1);
-        else                      return x.key;
-    }
-
-    /**
-     * Return the number of keys in the symbol table strictly less than {@code key}.
-     * @param key the key
-     * @return the number of keys in the symbol table strictly less than {@code key}
-     * @throws IllegalArgumentException if {@code key} is {@code null}
-     */
-    public int rank(Key key) {
-        if (key == null) throw new IllegalArgumentException("argument to rank() is null");
-        return rank(key, root);
-    }
-
-    // number of keys less than key in the subtree rooted at x
-    private int rank(Key key, Node x) {
-        if (x == null) return 0;
-        int cmp = key.compareTo(x.key);
-        if      (cmp < 0) return rank(key, x.left);
-        else if (cmp > 0) return 1 + size(x.left) + rank(key, x.right);
-        else              return size(x.left);
-    }
-
-
 }

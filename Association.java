@@ -3,7 +3,7 @@
  * Methods used to define the dictionary
  * <p>
  *
- * @author Pablo Ruiz (PingMaster99)
+ * @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
  * @version 1.0
  * @since 2020-04-20
  **/
@@ -42,7 +42,7 @@ public class Association<K, V> {
     /**
      * Gets the word in Spanish from an English word
      * @param englishWord word in english
-     * @return the word in Spanish
+     * @return the word in Spanish of word in english with asterisks if not found
      */
     public String getSpanishWord(K englishWord) {
         if(containsWord(englishWord)) {

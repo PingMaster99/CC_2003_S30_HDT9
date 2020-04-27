@@ -1,4 +1,9 @@
-/******************************************************************************
+/**
+ * <h1>BTree</h1>
+ * B-Tree implementation
+ * <p>
+ *
+  ******************************************************************************
  *  Copyright 2002-2020, Robert Sedgewick and Kevin Wayne.
  *
  *  This file is part of algs4.jar, which accompanies the textbook
@@ -6,7 +11,14 @@
  *      Algorithms, 4th edition by Robert Sedgewick and Kevin Wayne,
  *      Addison-Wesley Professional, 2011, ISBN 0-321-57351-X.
  *      http://algs4.cs.princeton.edu
- ******************************************************************************/
+ *******************************************************************************
+ *
+ * Edited by
+ *   @author Sebastian Gonzales (tabufellin) Pablo Ruiz (PingMaster99)
+ *   @version 1.0
+ *   @since 2020-04-27
+ **/
+
 public class BTree<Key extends Comparable<Key>, Value>  {
     // max children per B-tree node = M-1
     // (must be even and greater than 2)
@@ -48,14 +60,6 @@ public class BTree<Key extends Comparable<Key>, Value>  {
     }
 
     /**
-     * Returns the number of key-value pairs in this symbol table.
-     * @return the number of key-value pairs in this symbol table
-     */
-    public int size() {
-        return n;
-    }
-
-    /**
      * Returns the value associated with the given key.
      *
      * @param  key the key
@@ -68,6 +72,14 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         return search(root, key, height);
     }
 
+    /**
+     * Returns the value associated with the given key.
+     *
+     * @param x node
+     * @param key key
+     * @param ht height
+     * @return Value of the node that was searched
+     */
     private Value search(Node x, Key key, int ht) {
         Entry[] children = x.children;
 
@@ -112,6 +124,14 @@ public class BTree<Key extends Comparable<Key>, Value>  {
         height++;
     }
 
+    /**
+     * Inserts an element into the tree
+     *
+     * @param h node
+     * @param key key
+     * @param val value to be insterted
+     * @param ht height
+     */
     private Node insert(Node h, Key key, Value val, int ht) {
         int j;
         Entry t = new Entry(key, val, null);
